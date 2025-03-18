@@ -14,11 +14,12 @@ description-font-weight: normal
 color: #022841
 padding: 40px 0
 image:
-  src: 'https://github.com/jharmn/img-bucket/blob/main/images/travel.png?raw=true'
+  src: 'https://github.com/travisterwilligar/kongair-template/blob/main/images/dark-mode/travel.png?raw=true'
   position: right
   max-width: 45%
 styles: |
-  background: linear-gradient(336deg, rgba(255,255,255,1) 48%, rgba(155,202,232,1) 100%);
+
+  background: radial-gradient(74.91% 63.06% at 0% -5.79%, #025D99 0%, #000 100%);
   margin-bottom: -100px!important;
 ---
 #title
@@ -40,7 +41,7 @@ Tools for developers to automate interactions with KongAir
 ---
 full-width: true
 styles: |
-  background: no-repeat center url('https://raw.githubusercontent.com/jharmn/img-bucket/4080647556993838400a68877338b338b566900a/images/Plane%20divider.svg')
+  background: no-repeat center url('https://raw.githubusercontent.com/travisterwilligar/kongair-template/refs/heads/main/images/dark-mode/plane-divider.svg')
   background-size: contain
 ---
 ::
@@ -54,7 +55,7 @@ title-font-weight: normal
 description-font-weight: normal
 image:
   max-width: 50%
-  src: 'https://github.com/jillztom/kongair/blob/main/assets/code-sample.svg?raw=true'
+  src: 'https://raw.githubusercontent.com/travisterwilligar/kongair-template/refs/heads/main/images/dark-mode/code-sample.svg'
 padding: 50px 20px
 styles: |
   img {
@@ -63,14 +64,14 @@ styles: |
   }
 ---
 #title
-Kickstart development with [easy APIs]{style="font-weight: 700; color: #022841"}
+Kickstart development with [easy APIs]{style="font-weight: 700;"}
 #description
 Our APIs are dead simple to use and support industry standard SLAs.
 
 #actions
   ::k-button{ size="large" appearance="secondary" to="/apis" }
   <svg width="20px" height="20px">
-  <image xlink:href="https://github.com/jillztom/kongair/blob/main/assets/TerminalWindow.svg?raw=true" />
+  <image xlink:href="https://raw.githubusercontent.com/travisterwilligar/kongair-template/refs/heads/main/images/dark-mode/terminal-window.svg" />
   </svg>
   Try it for free
   ::
@@ -80,8 +81,10 @@ Our APIs are dead simple to use and support industry standard SLAs.
 ---
 padding: 50px 0
 styles: |
-  background: no-repeat top url('https://github.com/jillztom/kongair/blob/main/assets/PlaneBg.svg?raw=true'), linear-gradient(45deg, rgba(255,255,255,1) 20%, rgba(155,202,232,1) 100%);
+  background: no-repeat top url('https://raw.githubusercontent.com/travisterwilligar/kongair-template/refs/heads/main/images/dark-mode/plane-bg.svg'), linear-gradient(287deg, rgba(28, 101, 148) -35.41%, #000 97.21%);
   background-size: contain
 ---
+
 :apis-list{:persistPageNumber="true"}
 ::
+
