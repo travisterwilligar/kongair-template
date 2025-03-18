@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: KongAir Flights API
+  description: API for retrieving detailed flight information.
+  version: 1.0.0
+servers:
+  - url: https://api.kongair.com/v1
+    description: Production server
+paths:
+  /flights/{flightNumber}:
+    get:
+      summary: Retrieve flight information
+      description: Fetch all relevant details about a specific flight.
+      parameters:
+        - name: flightNumber
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique flight number identifier (e.g., KA1234).
+      responses:
+        '200':
+          description: Flight details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flight'
+components:
+  schemas:
+    Flight:
+      type: object
+      properties:
+        flight_number:
+          type: string
+          example: "KA1234"
+        origin:
+          type: string
+          example: "JFK"
+        destination:
+          type: string
+          example: "LAX"
+        departure_time:
+          type: string
+          format: date-time
+          example: "2025-06-01T08:30:00Z"
+        arrival_time:
+          type: string
+          format: date-time
+          example: "2025-06-01T11:30:00Z"
+        duration:
+          type: string
+          example: "06:15:00"
+          description: Flight duration in HH:MM:SS format.
+        airplane:
+          $ref: '#/components/schemas/Airplane'
+        connections:
+          type: array
+          description: List of connecting flights (if any).
+          items:
+            $ref: '#/components/schemas/FlightSegment'
+        available_seats:
+          type: object
+          properties:
+            economy:
+              type: integer
+              example: 42
+            business:
+              type: integer
+              example: 10
+            first_class:
+              type: integer
+              example: 4
+        active_delays:
+          type: array
+          description: List of active delays affecting the flight.
+          items:
+            type: string
+            example: "Weather-related delay of 30 minutes."
+        meals:
+          type: object
+          properties:
+            economy:
+              type: string
+              example: "Snack and beverage"
+            business:
+              type: string
+              example: "Three-course meal"
+            first_class:
+              type: string
+              example: "Gourmet dining experience with wine pairing"
+        status:
+          type: string
+          enum: [scheduled, delayed, cancelled, departed, landed]
+          example: "scheduled"
+    FlightSegment:
+      type: object
+      properties:
+        flight_number:
+          type: string
+          example: "KA5678"
+        origin:
+          type: string
+          example: "ORD"
+        destination:
+          type: string
+          example: "LAX"
+        departure_time:
+          type: string
+          format: date-time
+          example: "2025-06-01T10:30:00Z"
+        arrival_time:
+          type: string
+          format: date-time
+          example: "2025-06-01T12:30:00Z"
+        duration:
+          type: string
+          example: "02:00:00"
+          description: Flight duration in HH:MM:SS format.
+    Airplane:
+      type: object
+      properties:
+        model:
+          type: string
+          example: "Boeing 787"
+        registration_number:
+          type: string
+          example: "N123KA"
+        total_seats:
+          type: integer
+          example: 250
+        airline:
+          type: string
+          example: "KongAir"

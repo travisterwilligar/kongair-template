@@ -1,0 +1,175 @@
+openapi: 3.0.3
+info:
+  title: KongAir API
+  description: API for managing flight bookings with KongAir.
+  version: 1.0.0
+servers:
+  - url: https://api.kongair.com/v1
+    description: Production server
+paths:
+  /flights:
+    get:
+      summary: Retrieve available flights
+      description: Fetch a list of available flights based on search criteria.
+      parameters:
+        - name: origin
+          in: query
+          required: true
+          schema:
+            type: string
+          description: IATA code of the departure airport.
+        - name: destination
+          in: query
+          required: true
+          schema:
+            type: string
+          description: IATA code of the arrival airport.
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Flight departure date (YYYY-MM-DD).
+      responses:
+        '200':
+          description: A list of available flights.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Flight'
+  /bookings:
+    post:
+      summary: Create a new booking
+      description: Reserve seats on a flight.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingRequest'
+      responses:
+        '201':
+          description: Booking created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+  /bookings/{bookingId}:
+    get:
+      summary: Retrieve booking details
+      description: Fetch details of an existing booking.
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the booking.
+      responses:
+        '200':
+          description: Booking details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+    delete:
+      summary: Cancel a booking
+      description: Cancel an existing flight booking.
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the booking.
+      responses:
+        '204':
+          description: Booking cancelled successfully.
+components:
+  schemas:
+    Flight:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "FL1234"
+        origin:
+          type: string
+          example: "JFK"
+        destination:
+          type: string
+          example: "LAX"
+        departure_time:
+          type: string
+          format: date-time
+          example: "2025-06-01T08:30:00Z"
+        arrival_time:
+          type: string
+          format: date-time
+          example: "2025-06-01T11:30:00Z"
+        price:
+          type: number
+          format: float
+          example: 350.75
+    BookingRequest:
+      type: object
+      required:
+        - flight_id
+        - passengers
+        - payment
+      properties:
+        flight_id:
+          type: string
+          example: "FL1234"
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Passenger'
+        payment:
+          $ref: '#/components/schemas/Payment'
+    Booking:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "BK98765"
+        flight:
+          $ref: '#/components/schemas/Flight'
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Passenger'
+        status:
+          type: string
+          enum: [confirmed, cancelled]
+          example: "confirmed"
+    Passenger:
+      type: object
+      properties:
+        first_name:
+          type: string
+          example: "John"
+        last_name:
+          type: string
+          example: "Doe"
+        date_of_birth:
+          type: string
+          format: date
+          example: "1985-05-20"
+        passport_number:
+          type: string
+          example: "123456789"
+    Payment:
+      type: object
+      properties:
+        method:
+          type: string
+          enum: [credit_card, paypal]
+          example: "credit_card"
+        amount:
+          type: number
+          format: float
+          example: 350.75

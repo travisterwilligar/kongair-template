@@ -1,0 +1,143 @@
+:root {
+  /* text primary colors */
+  --kui-color-text-primary-weakest: #D4E2E8;
+  --kui-color-text-primary-weaker: #B4CCD6;
+  --kui-color-text-primary-weak: #6EA3B3;
+  --kui-color-text-primary: #4189A0;
+  --kui-color-text-primary-strong: #35798F;
+  --kui-color-text-primary-stronger: #2C6C81;
+  --kui-color-text-primary-strongest: #266F8D;
+
+  /* icons */
+  --kui-icon-color-primary: #4189A0;
+
+  /* shadows */
+  --kui-shadow-focus: 0px 0px 0px 4px rgba(65, 137, 160, 0.2);
+  --kui-shadow-border-primary-weak: 0px 0px 0px 1px #6EA3B3 inset;
+  --kui-shadow-border-primary: 0px 0px 0px 1px #4189A0 inset;
+  --kui-shadow-border-primary-strongest: 0px 0px 0px 1px #266F8D inset;
+  
+  /* backgrounds */
+  --kui-color-background-primary-weakest: #D4E2E8;
+  --kui-color-background-primary-weaker: #B4CCD6;
+  --kui-color-background-primary-weak: #6EA3B3;
+  --kui-color-background-primary: #4189A0;
+  --kui-color-background-primary-strong: #35798F;
+  --kui-color-background-primary-stronger: #2C6C81;
+  --kui-color-background-primary-strongest: #266F8D;
+
+  /* borders */
+  --kui-color-border-primary-weakest: #D4E2E8;
+  --kui-color-border-primary-weaker: #B4CCD6;
+  --kui-color-border-primary-weak: #6EA3B3;
+  --kui-color-border-primary: #4189A0;
+  --kui-color-border-primary-strong: #35798F;
+  --kui-color-border-primary-stronger: #2C6C81;
+  --kui-color-border-primary-strongest: #266F8D;
+
+  /* Spec renderer overrides */
+  --kui-method-color-text-get: #4189A0;
+  --kui-method-color-background-get: #D4E2E8;
+}
+
+body {
+  background-color: #F9FAFB;
+}
+
+header {
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+  border: none !important;
+}
+
+.app-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: #fff;
+  background: #FFF;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+}
+
+.k-card.api-card {
+  border-radius: 20px;
+  background: #FFF;
+  box-shadow: 0px 0px 90px 0px rgba(0, 0, 0, 0.05);
+  padding: 32px;
+  border: none;
+}
+
+.mobile-menu-button,
+.mobile-menu-close-button {
+  --kui-color-text-inverse: #fff;
+}
+
+.kui-icon.dev-portal-icon {
+  color: #254E7A !important;
+}
+
+.mobile-menu-sidebar {
+  --kui-color-background-inverse: #FFFFFF;
+}
+
+.layout-menu-header ul li {
+  --kui-color-border-primary: #254E7A;
+}
+
+.layout-header,
+.layout-header-content,
+.layout-menu-header,
+.search-button {
+  /*background-color: #FFF;
+  color: #254E7A;*/
+}
+
+.search-button {}
+
+.layout-header {
+  background-color: white !important;
+}
+
+.layout-menu-header a {
+  --kui-color-text-inverse: #fff;
+}
+
+.k-button {
+  --kui-color-background-primary: #2ABDBB;
+  border-radius: 32px !important;
+
+}
+
+.k-button:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-out;
+}
+
+.k-button.large {
+  padding: 10px 20px !important;
+  transition: all 0.3s ease-out;
+}
+
+.k-button.primary,
+.k-button.primary:hover {
+  background: linear-gradient(75deg, rgba(42, 189, 187, 1) 22%, rgba(35, 43, 101, 1) 100%);
+  background-repeat: no-repeat;
+  border: 0px !important;
+  --kui-color-border-primary: #2ABDBB;
+}
+
+.k-button.secondary,
+.k-button.secondary:hover {
+  --kui-color-text-primary: #266F8D;
+  --kui-color-border-primary: #266F8D;
+  border-radius: 32px;
+  color: #266F8D !important;
+  color: var(--kui-color-text-primary) !important;
+  border-color: #266F8D !important;
+  border-color: var(--kui-color-border-primary) !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .page-hero-title {
+    font-size: 36px !important;
+    line-height: 46px !important;
+  }
+}

@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: KongAir Passenger API
+  description: API for retrieving detailed passenger information.
+  version: 1.0.0
+servers:
+  - url: https://api.kongair.com/v1
+    description: Production server
+paths:
+  /passengers/{customerId}:
+    get:
+      summary: Retrieve passenger information
+      description: Fetch all relevant details about a specific passenger.
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique customer ID.
+      responses:
+        '200':
+          description: Passenger details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Passenger'
+components:
+  schemas:
+    Passenger:
+      type: object
+      properties:
+        customer_id:
+          type: string
+          example: "CUST12345"
+        first_name:
+          type: string
+          example: "John"
+        middle_name:
+          type: string
+          example: "Michael"
+        last_name:
+          type: string
+          example: "Doe"
+        email:
+          type: string
+          format: email
+          example: "john.doe@example.com"
+        phone_number:
+          type: string
+          example: "+1-555-123-4567"
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+              example: "123 Main St"
+            city:
+              type: string
+              example: "Los Angeles"
+            state:
+              type: string
+              example: "CA"
+            postal_code:
+              type: string
+              example: "90001"
+            country:
+              type: string
+              example: "USA"
+        employer:
+          type: string
+          example: "Acme Corp"
+        loyalty_status:
+          type: object
+          properties:
+            tier:
+              type: string
+              enum: [Bronze, Silver, Gold, Platinum]
+              example: "Gold"
+            points_balance:
+              type: integer
+              example: 25000
+            status_valid_until:
+              type: string
+              format: date
+              example: "2026-12-31"
+        recent_flights:
+          type: array
+          description: List of flights taken in the last 18 months.
+          items:
+            $ref: '#/components/schemas/FlightHistory'
+        recent_purchases:
+          type: array
+          description: List of recent purchases made with KongAir.
+          items:
+            $ref: '#/components/schemas/Purchase'
+    FlightHistory:
+      type: object
+      properties:
+        flight_number:
+          type: string
+          example: "KA5678"
+        origin:
+          type: string
+          example: "JFK"
+        destination:
+          type: string
+          example: "LAX"
+        departure_date:
+          type: string
+          format: date
+          example: "2024-05-15"
+        class:
+          type: string
+          enum: [Economy, Business, First]
+          example: "Business"
+        seat_number:
+          type: string
+          example: "12A"
+    Purchase:
+      type: object
+      properties:
+        purchase_id:
+          type: string
+          example: "PUR78901"
+        description:
+          type: string
+          example: "Extra baggage allowance"
+        amount:
+          type: number
+          format: float
+          example: 50.00
+        purchase_date:
+          type: string
+          format: date-time
+          example: "2025-02-20T14:30:00Z"
