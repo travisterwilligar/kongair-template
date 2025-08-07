@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: KongAir Flights API
   description: API for retrieving detailed flight information.
-  version: 1.0.1
+  version: 1.1.1
 servers:
   - url: https://api.kongair.com/v1
     description: Production server
