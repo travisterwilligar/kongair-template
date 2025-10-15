@@ -12,5 +12,5 @@
         * I've created some sample documentation and API specs
             * documentation/ contains the api docs
             * api-specs/ contains open api v3 specs that match the documentation
-    * Apis: page that lists the APIs but also has some text to go with the KongAir theme
+    * Apis: page that lists the APIs but also has some text to go with the kongair theme
     * getting-started: another example document that goes along with the KongAir theme
